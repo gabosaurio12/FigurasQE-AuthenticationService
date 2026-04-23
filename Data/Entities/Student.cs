@@ -9,6 +9,8 @@ public partial class Student
 
     public int? IdTutor { get; set; }
 
+    public string Name { get; set; } = null!;
+
     public int Age { get; set; }
 
     public char Genre { get; set; }

@@ -34,6 +34,7 @@ public class UserRepository
         {
             var student = new Student
             {
+                Name = user.Name,
                 Email = user.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
                 Age = user.Age,
@@ -47,6 +48,7 @@ public class UserRepository
         {
             var tutor = new Tutor
             {
+                Name = user.Name,
                 Email = user.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password)
             };
