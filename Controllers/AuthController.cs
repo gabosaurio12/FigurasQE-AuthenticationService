@@ -24,7 +24,7 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Signup(RegisterRequest request)
     {
-        var id = await _authService.Signup(request);
-        return Ok(new { userId = id });
+        var token = await _authService.Signup(request);
+        return Ok(new { token });
     }
 }
