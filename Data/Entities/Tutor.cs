@@ -15,5 +15,7 @@ public partial class Tutor
 
     public DateTime? RegistrationDate { get; set; }
 
+    public string? Name { get; set; }
+
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 }

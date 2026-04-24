@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using FigurasQE_AuthenticationService.Data.Entities;
 
+
 namespace FigurasQE_AuthenticationService.Data;
 
-public partial class AppDbContext : DbContext
+public partial class FigurasqeContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
+    public FigurasqeContext()
+    {
+    }
+
+    public FigurasqeContext(DbContextOptions<FigurasqeContext> options)
         : base(options)
     {
     }
@@ -23,6 +28,10 @@ public partial class AppDbContext : DbContext
     public virtual DbSet<Student> Students { get; set; }
 
     public virtual DbSet<Tutor> Tutors { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
+        => optionsBuilder.UseNpgsql("Host=localhost;Database=figurasqe;Username=postgres;Password=1234");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -116,6 +125,9 @@ public partial class AppDbContext : DbContext
                 .HasMaxLength(1)
                 .HasColumnName("genre");
             entity.Property(e => e.IdTutor).HasColumnName("id_tutor");
+            entity.Property(e => e.Name)
+                .HasMaxLength(120)
+                .HasColumnName("name");
             entity.Property(e => e.Neurodivergency)
                 .HasMaxLength(50)
                 .HasColumnName("neurodivergency");
@@ -148,6 +160,9 @@ public partial class AppDbContext : DbContext
             entity.Property(e => e.Email)
                 .HasMaxLength(120)
                 .HasColumnName("email");
+            entity.Property(e => e.Name)
+                .HasMaxLength(120)
+                .HasColumnName("name");
             entity.Property(e => e.PasswordHash)
                 .HasMaxLength(255)
                 .HasColumnName("password_hash");

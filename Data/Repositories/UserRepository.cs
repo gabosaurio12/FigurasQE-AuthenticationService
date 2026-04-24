@@ -1,5 +1,6 @@
 using FigurasQE_AuthenticationService.Data.Entities;
 using FigurasQE_AuthenticationService.Models;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -8,9 +9,9 @@ namespace FigurasQE_AuthenticationService.Data.Repositories;
 public class UserRepository
 {
 
-    private readonly AppDbContext Context;
+    private readonly FigurasqeContext Context;
 
-    public UserRepository(AppDbContext context)
+    public UserRepository(FigurasqeContext context)
     {
         Context = context;
     }
@@ -34,6 +35,7 @@ public class UserRepository
         {
             var student = new Student
             {
+                Name = user.Name,
                 Email = user.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
                 Age = user.Age,
@@ -47,8 +49,10 @@ public class UserRepository
         {
             var tutor = new Tutor
             {
+                Name = user.Name,
                 Email = user.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password)
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
+                Country = user.Country
             };
             await Context.Tutors.AddAsync(tutor);
         }
