@@ -1,6 +1,7 @@
+using System.IO.Compression;
 using FigurasQE_AuthenticationService.Data.Entities;
+using FigurasQE_AuthenticationService.Data;
 using FigurasQE_AuthenticationService.Models;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -33,30 +34,35 @@ public class UserRepository
     {
         if (user.Role.Equals("student"))
         {
-            var student = new Student
+            if (await Context.Students.FirstOrDefaultAsync(s => s.Email == user.Email) == null)
             {
-                Name = user.Name,
-                Email = user.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
-                Age = user.Age,
-                Genre = user.Genre,
-                Country = user.Country,
-                Neurodivergency = user.Neurodivergency
-            };
-            await Context.Students.AddAsync(student);
+                var student = new Student
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
+                    Age = user.Age,
+                    Genre = user.Genre,
+                    Country = user.Country,
+                    Neurodivergency = user.Neurodivergency
+                };
+                await Context.Students.AddAsync(student);
+            }
         }
         else
         {
-            var tutor = new Tutor
+            if (await Context.Tutors.FirstOrDefaultAsync(t => t.Email == user.Email) == null)
             {
-                Name = user.Name,
-                Email = user.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
-                Country = user.Country
-            };
-            await Context.Tutors.AddAsync(tutor);
+                var tutor = new Tutor
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
+                    Country = user.Country
+                };
+                await Context.Tutors.AddAsync(tutor);
+            }
         }
-
         await Context.SaveChangesAsync();
         return true;
     }
