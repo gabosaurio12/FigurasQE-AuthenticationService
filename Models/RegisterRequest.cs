@@ -14,7 +14,7 @@ public class RegisterRequest
     public string Email { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Password is required")]
-    [MinLength(6, ErrorMessage = "Password must be at least 6 characters")]
+    [StringLength(255, MinimumLength = 8, ErrorMessage = "PasswordHash must be between 8 and 255 characters.")]
     [MaxLength(100)]
     public string Password { get; set; } = string.Empty;
 
@@ -34,9 +34,11 @@ public class RegisterRequest
     [RegularExpression("^(student|tutor)$", ErrorMessage = "Role must be student or tutor")]
     public string Role { get; set; } = string.Empty;
 
-    [StringLength(50)]
+    [StringLength(50, ErrorMessage = "Neurodivergency must be 50 characters or less.")]
+    [RegularExpression(@"^[\p{L}0-9\s\-_]*$", ErrorMessage = "Neurodivergency may contain letters, numbers, spaces, hyphens and underscores.")]
     public string? Neurodivergency { get; set; }
 
-    [StringLength(20)]
+    [RegularExpression("^(licenciatura|maestria|doctorado|post-Doctorado|padre-madre)$",
+        ErrorMessage = "Grade must be one of: Licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
     public string? Degree { get; set; }
 }
