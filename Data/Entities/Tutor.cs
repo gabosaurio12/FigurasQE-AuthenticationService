@@ -7,6 +7,8 @@ public partial class Tutor
 {
     public int IdTutor { get; set; }
 
+    public string Name { get; set; } = null!;
+
     public string Email { get; set; } = null!;
 
     public string PasswordHash { get; set; } = null!;

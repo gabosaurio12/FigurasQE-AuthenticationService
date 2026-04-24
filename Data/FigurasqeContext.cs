@@ -157,6 +157,9 @@ public partial class FigurasqeContext : DbContext
                 .HasMaxLength(2)
                 .IsFixedLength()
                 .HasColumnName("country");
+            entity.Property(e => e.Name)
+                .HasMaxLength(120)
+                .HasColumnName("name");
             entity.Property(e => e.Email)
                 .HasMaxLength(120)
                 .HasColumnName("email");
