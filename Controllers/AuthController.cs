@@ -24,7 +24,7 @@ public class AuthController : ControllerBase
         }
         catch (UnauthorizedAccessException ex)
         {
-            return Unauthorized(new { message = ex.Message });
+            return Unauthorized(new { error = ex.Message });
         }
     }
 

@@ -25,15 +25,15 @@ namespace FigurasQE_AuthenticationService.Services
         public Dictionary<string, object> CreatePayload(AuthUser user)
         {
             return new Dictionary<string, object>
-    {
-        { "sub", user.Id.ToString() },
-        { "email", user.Email },
-        { "role", user.Role },
-        { "iss", Configuration["Jwt:Issuer"] },
-        { "aud", Configuration["Jwt:Audience"] },
-        { "iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
-        { "exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds() }
-    };
+            {
+                { "sub", user.Id.ToString() },
+                { "email", user.Email },
+                { "role", user.Role },
+                { "iss", Configuration["Jwt:Issuer"] },
+                { "aud", Configuration["Jwt:Audience"] },
+                { "iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
+                { "exp", DateTimeOffset.UtcNow.AddHours(1).ToUnixTimeSeconds() }
+            };
         }
 
         public string EncodeToken(AuthUser user)
