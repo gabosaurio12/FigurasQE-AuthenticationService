@@ -9,7 +9,7 @@ public partial class Student
 
     public int? IdTutor { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string? Name { get; set; }
 
     public int Age { get; set; }
 
