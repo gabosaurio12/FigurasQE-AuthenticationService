@@ -42,7 +42,7 @@ public class UserRepository
                     Email = user.Email,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
                     Age = user.Age,
-                    Genre = user.Gender,
+                    Gender = user.Gender,
                     Country = user.Country,
                     Neurodivergency = user.Neurodivergency
                 };
@@ -63,7 +63,7 @@ public class UserRepository
                     Age = user.Age,
                     Gender = user.Gender,
                     Country = user.Country,
-                    Grade = user.Grade
+                    Degree = user.Degree
                 };
                 await Context.Tutors.AddAsync(tutor);
             }

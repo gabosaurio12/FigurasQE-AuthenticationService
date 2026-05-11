@@ -34,9 +34,8 @@ public class RegisterRequest
     [RegularExpression("^(student|tutor)$", ErrorMessage = "Role must be student or tutor")]
     public string Role { get; set; } = string.Empty;
 
-    [StringLength(50, ErrorMessage = "Neurodivergency must be 50 characters or less.")]
     [RegularExpression(@"^[\p{L}0-9\s\-_]*$", ErrorMessage = "Neurodivergency may contain letters, numbers, spaces, hyphens and underscores.")]
     public string? Neurodivergency { get; set; }
 
-    public string? Grade { get; set; }
+    public string? Degree { get; set; }
 }
