@@ -21,7 +21,7 @@ public partial class Tutor
 
     public int? Age { get; set; }
 
-    public string? Grade { get; set; }
+    public string? Degree { get; set; }
 
     public virtual ICollection<Student> Students { get; set; } = new List<Student>();
 }
