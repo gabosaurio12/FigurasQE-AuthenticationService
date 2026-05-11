@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using FigurasQE_AuthenticationService.Data.Entities;
 
-
 namespace FigurasQE_AuthenticationService.Data;
 
 public partial class FigurasqeContext : DbContext
@@ -153,16 +152,20 @@ public partial class FigurasqeContext : DbContext
             entity.HasIndex(e => e.Email, "tutors_email_key").IsUnique();
 
             entity.Property(e => e.IdTutor).HasColumnName("id_tutor");
+            entity.Property(e => e.Age).HasColumnName("age");
             entity.Property(e => e.Country)
                 .HasMaxLength(2)
                 .IsFixedLength()
                 .HasColumnName("country");
-            entity.Property(e => e.Name)
-                .HasMaxLength(120)
-                .HasColumnName("name");
             entity.Property(e => e.Email)
                 .HasMaxLength(120)
                 .HasColumnName("email");
+            entity.Property(e => e.Gender)
+                .HasMaxLength(1)
+                .HasColumnName("gender");
+            entity.Property(e => e.Grade)
+                .HasMaxLength(20)
+                .HasColumnName("grade");
             entity.Property(e => e.Name)
                 .HasMaxLength(120)
                 .HasColumnName("name");

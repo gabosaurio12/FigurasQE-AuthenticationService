@@ -22,9 +22,9 @@ public class RegisterRequest
     [Range(1, 120, ErrorMessage = "Age must be between 1 and 85")]
     public int Age { get; set; }
 
-    [Required(ErrorMessage = "Genre is required")]
-    [RegularExpression("^[MFO]$", ErrorMessage = "Genre must be M, F or O")]
-    public char Genre { get; set; }
+    [Required(ErrorMessage = "Gender is required")]
+    [RegularExpression("^[MFO]$", ErrorMessage = "Gender must be M, F or O")]
+    public char Gender { get; set; }
 
     [Required(ErrorMessage = "Country is required")]
     [StringLength(2, MinimumLength = 2, ErrorMessage = "Country must be ISO code (e.g. MX, US)")]
@@ -38,7 +38,5 @@ public class RegisterRequest
     [RegularExpression(@"^[\p{L}0-9\s\-_]*$", ErrorMessage = "Neurodivergency may contain letters, numbers, spaces, hyphens and underscores.")]
     public string? Neurodivergency { get; set; }
 
-    [RegularExpression("^(licenciatura|maestria|doctorado|post-Doctorado|padre-madre)$",
-        ErrorMessage = "Grade must be one of: Licenciatura, Maestria, Doctorado, Post Doctorado, Padre o Madre.")]
-    public string? Degree { get; set; }
+    public string? Grade { get; set; }
 }

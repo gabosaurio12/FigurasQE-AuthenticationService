@@ -42,12 +42,14 @@ public class UserRepository
                     Email = user.Email,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
                     Age = user.Age,
-                    Genre = user.Genre,
+                    Genre = user.Gender,
                     Country = user.Country,
                     Neurodivergency = user.Neurodivergency
                 };
                 await Context.Students.AddAsync(student);
             }
+            else
+                return false;
         }
         else
         {
@@ -58,10 +60,15 @@ public class UserRepository
                     Name = user.Name,
                     Email = user.Email,
                     PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.Password),
-                    Country = user.Country
+                    Age = user.Age,
+                    Gender = user.Gender,
+                    Country = user.Country,
+                    Grade = user.Grade
                 };
                 await Context.Tutors.AddAsync(tutor);
             }
+            else
+                return false;
         }
         await Context.SaveChangesAsync();
         return true;
