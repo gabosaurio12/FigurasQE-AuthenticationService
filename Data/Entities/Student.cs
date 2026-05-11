@@ -8,7 +8,6 @@ public partial class Student
     public int IdStudent { get; set; }
 
     public int? IdTutor { get; set; }
-
     public int Age { get; set; }
 
     public char Genre { get; set; }
